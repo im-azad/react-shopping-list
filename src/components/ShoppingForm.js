@@ -19,7 +19,7 @@ const ShoppingForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name) {
-			showAlert(true, 'danger', 'please enter value');
+			showAlert(true, 'danger', 'Please enter value');
 		} else if (name && isEditing) {
 			setList(
 				list.map((item) => {
