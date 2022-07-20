@@ -1,0 +1,35 @@
+.shopping-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
+	margin: auto;
+
+	margin-bottom: 20px;
+	margin-top: 16px;
+	transition: 0.3s;
+	padding: 0 20px;
+	border-radius: 5px;
+	border: 1px solid #d9ddd9;
+}
+
+.shopping-item:hover {
+	background: #f1f5f8;
+}
+
+.delete-btn,
+.edit-btn {
+	background: transparent;
+	border-color: transparent;
+	cursor: pointer;
+	font-size: 0.7rem;
+	margin: 0 0.15rem;
+	font-size: 18px;
+	line-height: 1;
+}
+.edit-btn {
+	color: #64a212;
+}
+.delete-btn {
+	color: #da2627;
+}
