@@ -1,10 +1,28 @@
 /* section style */
 .section-center {
-	min-width: 897px;
+	min-width: 240px;
 	background-color: white;
-	padding: 30px 40px;
+	padding: 10px 20px;
 	border-radius: 10px;
 	text-align: center;
+}
+
+@media (min-width: 576px) {
+	.section-center {
+		min-width: 480px;
+		padding: 30px 40px;
+	}
+}
+@media (min-width: 768px) {
+	.section-center {
+		min-width: 600px;
+		padding: 30px 40px;
+	}
+}
+@media (min-width: 1200px) {
+	.section-center {
+		min-width: 900px;
+	}
 }
 .shopping {
 	width: 50%;

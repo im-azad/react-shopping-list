@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ShoppingForm.css';
 import List from './List';
 import Alert from './Alert';
+
+// get list item from local storage
 const getLocalStorage = () => {
 	let list = localStorage.getItem('list');
 	if (list) {
@@ -11,25 +13,25 @@ const getLocalStorage = () => {
 	}
 };
 const ShoppingForm = () => {
-	const [name, setName] = useState('');
+	const [items, setItems] = useState('');
 	const [list, setList] = useState(getLocalStorage());
 	const [isEditing, setIsEditing] = useState(false);
 	const [editID, setEditID] = useState(null);
 	const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!name) {
+		if (!items) {
 			showAlert(true, 'danger', 'Please enter value');
-		} else if (name && isEditing) {
+		} else if (items && isEditing) {
 			setList(
 				list.map((item) => {
 					if (item.id === editID) {
-						return { ...item, title: name };
+						return { ...item, title: items };
 					}
 					return item;
 				})
 			);
-			setName('');
+			setItems('');
 			setEditID(null);
 			setIsEditing(false);
 			showAlert(true, 'success', 'Value changed');
@@ -37,11 +39,11 @@ const ShoppingForm = () => {
 			showAlert(true, 'success', 'Item added to the list');
 			const newItem = {
 				id: new Date().getTime().toString(),
-				title: name,
+				title: items,
 			};
 
 			setList([...list, newItem]);
-			setName('');
+			setItems('');
 		}
 	};
 
@@ -60,7 +62,7 @@ const ShoppingForm = () => {
 		const specificItem = list.find((item) => item.id === id);
 		setIsEditing(true);
 		setEditID(id);
-		setName(specificItem.title);
+		setItems(specificItem.title);
 	};
 	useEffect(() => {
 		localStorage.setItem('list', JSON.stringify(list));
@@ -72,17 +74,17 @@ const ShoppingForm = () => {
 					<Alert {...alert} removeAlert={showAlert} list={list} />
 				)}
 
-				<h3> Shopping List</h3>
+				<h2>Add Shopping List</h2>
 				<div className='form-control'>
 					<input
 						type='text'
 						className='shopping'
 						placeholder='Add item'
-						value={name}
-						onChange={(e) => setName(e.target.value)}
+						value={items}
+						onChange={(e) => setItems(e.target.value)}
 					/>
 					<button type='submit' className='submit-btn'>
-						{isEditing ? 'edit' : 'submit'}
+						{isEditing ? 'edit' : 'submit item'}
 					</button>
 				</div>
 			</form>
