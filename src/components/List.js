@@ -23,7 +23,6 @@ const List = ({ items, removeItem, editItem }) => {
 								onClick={() => removeItem(id)}
 							>
 								<FaTrash />
-								ya
 							</button>
 						</div>
 					</article>

@@ -18,6 +18,8 @@ const ShoppingForm = () => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editID, setEditID] = useState(null);
 	const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
+
+	// handle submit input
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!items) {
@@ -34,7 +36,7 @@ const ShoppingForm = () => {
 			setItems('');
 			setEditID(null);
 			setIsEditing(false);
-			showAlert(true, 'success', 'Value changed');
+			showAlert(true, 'success', 'Item changed');
 		} else {
 			showAlert(true, 'success', 'Item added to the list');
 			const newItem = {
@@ -47,26 +49,36 @@ const ShoppingForm = () => {
 		}
 	};
 
+	// show alert text on top
 	const showAlert = (show = false, type = '', msg = '') => {
 		setAlert({ show, type, msg });
 	};
+
+	// clear all item
 	const clearList = () => {
 		showAlert(true, 'danger', 'Empty list');
 		setList([]);
 	};
+
+	// delete single item
 	const removeItem = (id) => {
 		showAlert(true, 'danger', 'Item removed');
 		setList(list.filter((item) => item.id !== id));
 	};
+
+	// edit item
 	const editItem = (id) => {
 		const specificItem = list.find((item) => item.id === id);
 		setIsEditing(true);
 		setEditID(id);
 		setItems(specificItem.title);
 	};
+
+	// load data from local storage
 	useEffect(() => {
 		localStorage.setItem('list', JSON.stringify(list));
 	}, [list]);
+
 	return (
 		<section className='section-center'>
 			<form className='shopping-form' onSubmit={handleSubmit}>
